@@ -25,7 +25,6 @@ class Invoicebox extends Payment
         $this->debug = $this->getSetting('debug') == '1';
         $this->client = new InvoiceboxClient(
             $this->getSetting('api_token'),
-            //'flNTccRL3k',
             $this->getSetting('api_version'),
             null,
             null,
