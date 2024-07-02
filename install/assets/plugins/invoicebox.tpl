@@ -8,7 +8,7 @@
  * @version     1.0.0
  * @author      Webber
  * @internal    @events OnRegisterPayments,OnBeforeOrderSending,OnManagerBeforeOrderRender
- * @internal    @properties &title=Title;text; &api_key=API ключ;text;&api_token=API токен для l3;text;&api_version=API version;list;v3==v3||l3==l3;l3 &merchant_id=Merchant ID;text;&debug=Debug;list;No==0||Yes==1;1 
+ * @internal    @properties &title=Title;text; &api_key=API ключ;text;&api_token=API токен для l3;text;&api_version=API version;list;v3==v3||l3==l3;l3 &merchant_id=Merchant ID;text; &vat=НДС;text;0 &debug=Debug;list;No==0||Yes==1;1 
  * @internal    @modx_category Commerce
  * @internal    @installset base
  */
