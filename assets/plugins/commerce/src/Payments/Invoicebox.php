@@ -141,15 +141,39 @@ class Invoicebox extends Payment
                 if (!$payment) {
                     throw new Exception('Payment "' . htmlentities(print_r($paymentHash, true)) . '" . not found!');
                 }
-                return $processor->processPayment($payment['id'], $payment['amount']);
+                try {
+                    $processor->processPayment($payment['id'], $payment['amount']);
+                    return $this->success();
+                } catch (Exception $e) {
+                    $this->modx->logEvent(0, 3, 'Payment processPayment failed: ' . $e->getMessage(), 'Commerce InvoiceBox Payment');
+                    return $this->error();
+                }
             } catch (Exception $e) {
                 $this->modx->logEvent(0, 3, 'Payment process failed: ' . $e->getMessage(), 'Commerce InvoiceBox Payment');
-                return false;
+                return $this->error();
             }
         }
-        return false;
+        return $this->error();
     }
 
+    protected function success()
+    {
+        $out = [
+            'status' => 'success'
+        ];
+        echo json_encode($out);
+        exit();
+    }
+
+    protected function error()
+    {
+        $out = [
+            'status' => 'error'
+        ];
+        echo json_encode($out);
+        exit();
+    }
+    
     public function getRequestPaymentHash()
     {
         if (!empty($_REQUEST['paymentHash']) && is_scalar($_REQUEST['paymentHash'])) {
